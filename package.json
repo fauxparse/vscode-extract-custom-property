@@ -1,0 +1,65 @@
+{
+  "name": "extract-custom-property",
+  "displayName": "Extract CSS custom property",
+  "description": "Extracts a new CSS custom property from the selection",
+  "author": {
+    "name": "Matt Powell",
+    "email": "fauxparse@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fauxparse/vscode-extract-custom-property"
+  },
+  "homepage": "https://github.com/fauxparse/vscode-extract-custom-property",
+  "icon": "logo.png",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.69.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extract-custom-property.extract"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "extract-custom-property.extract",
+          "when": "editorLangId == css || editorLangId == scss"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "title": "Extract CSS custom property",
+        "command": "extract-custom-property.extract",
+        "enablement": "editorHasSelection && !editorHasMultipleSelections"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.69.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4",
+    "@vscode/test-electron": "^2.1.5"
+  }
+}
